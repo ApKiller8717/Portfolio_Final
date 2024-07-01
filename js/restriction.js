@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const handleContextMenu = (e) => {
         e.preventDefault();
@@ -5,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleKeyPress = (e) => {
         if (
-            (e.key === 'F12' && !e.ctrlKey && !e.shiftKey) ||
+            (e.key === 'F12' && e.ctrlKey === false && e.shiftKey === false) ||
             e.key === 'u' ||
             (e.ctrlKey && e.shiftKey && e.key === 'J')
         ) {
@@ -25,19 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Check for DevTools Open
-    const checkDevTools = () => {
-        const devtools = /./;
-        devtools.toString = () => {
-            this.opened = true;  // This will not prevent opening but can detect when it's open
-            return '';
-        };
-        console.log('%c ', devtools);  // This triggers the toString method
-    };
-
-    setInterval(checkDevTools, 1000);  // Check every second
-
-    // Add event listeners
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('keydown', handleKeyPress);
     document.addEventListener('keydown', handleKeyDown);
